@@ -7,13 +7,13 @@
 #include <inttypes.h>
 #include <math.h>
 #include "help.h"
-#include "password.h"
+#include "password.c"
 
 static char *alphanum="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 void spew(uint_fast64_t n, uint_fast32_t l, uint_fast32_t slots, uint_fast32_t assigned, uint_fast32_t offset)
 {
-	if(slots && (n-offset) % slots >= assigned) {
-		n=(n/slots+1)*slots-offset;
+	if(slots && (n-offset) % slots >= assigned) { //if start value is not an "assigned line",
+		n=(n/slots+1)*slots-offset;               //bump up to next "assigned line"
 	}
 	add(n);
 	uint_fast32_t skip=slots-assigned;
