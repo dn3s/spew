@@ -5,12 +5,12 @@
 #include <stdbool.h>
 #include <inttypes.h>
 #include <math.h>
-#include "password.h"
 
 static uint_fast32_t charsl=0;
 static char *chars="";
 static char *passn;
 static size_t passl=1;
+static bool debug=0;
 void addDigit(size_t n)
 {
 	passl+=n;

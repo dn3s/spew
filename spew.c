@@ -6,8 +6,8 @@
 #include <string.h>
 #include <inttypes.h>
 #include <math.h>
-#include "help.h"
-#include "password.c"
+#include <help.h>
+#include <password.h>
 
 static char *alphanum="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 void spew(uint_fast64_t n, uint_fast32_t l, uint_fast32_t slots, uint_fast32_t assigned, uint_fast32_t offset)
@@ -46,18 +46,18 @@ void main(int argc, char **argv) {
 	setCharset(alphanum);
 	while (1) {
 		static struct option long_options[] = {
-			{"charset",      required_argument, 0, 99  },
-			{"numeric",      optional_argument, 0, 110 },
-			{"alphanum",     no_argument,       0, 97  },
-			{"resume",       required_argument, 0, 114 },
-			{"blocksize",    required_argument, 0, 116 },
-			{"my-lines",     required_argument, 0, 115 },
-			{"offset-lines", required_argument, 0, 111 },
-			{"length",       required_argument, 0, 108 },
-			{"debug",        optional_argument, 0, 100 },
+			{"charset",      required_argument, 0, 99  }, //c
+			{"numeric",      no_argument,       0, 110 }, //n
+			{"alphanum",     no_argument,       0, 97  }, //a
+			{"resume",       required_argument, 0, 114 }, //r
+			{"blocksize",    required_argument, 0, 116 }, //b
+			{"length",       required_argument, 0, 101 }, //e
+			{"my-lines",     required_argument, 0, 108 }, //l
+			{"offset-lines", required_argument, 0, 111 }, //o
+			{"debug",        optional_argument, 0, 100 }, //d
 			{0,              0,                 0, 0   }
 		};
-		char c = getopt_long(argc, argv, "c:n::ar:t:s:o:d::l:", long_options, 0);
+		char c = getopt_long(argc, argv, "c:nar:b:e:l:o:d::", long_options, 0);
 		if (c == -1) {
 		   break;
 		}
@@ -77,13 +77,13 @@ void main(int argc, char **argv) {
 			case 'r':
 				start=strtoumax(optarg,NULL,10);
 				break;
-			case 'l':
-				length=strtoul(optarg,NULL,10);
-				break;
-			case 't':
+			case 'b':
 				slots=strtoul(optarg,NULL,10);
 				break;
-			case 's':
+			case 'e':
+				length=strtoul(optarg,NULL,10);
+				break;
+			case 'l':
 				assigned=strtoul(optarg,NULL,10);
 				break;
 			case 'o':
