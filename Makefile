@@ -4,19 +4,19 @@ DEPS = password.h
 ODIR=obj
 _OBJ = spew.o password.o
 OBJ=$(patsubst %,$(ODIR)/%,$(_OBJ))
-INSTALL="install"
+INSTALL=install
 exec_prefix=$(prefix)
 bindir=$(exec_prefix)/bin
-
-$(ODIR)/%.o: %.c $(DEPS)
-	$(CC) -c -o $@ $< -I . $(CFLAGS)
 
 spew: $(OBJ)
 	$(CC) -o $@ $^ $(CFLAGS)
 
+$(ODIR)/%.o: %.c $(DEPS)
+	$(CC) -c -o $@ $< -I . $(CFLAGS)
+
 .PHONY: clean
 clean:
-	rm $(ODIR)/*; rm spew
+	rm spew $(OBJ)
 
 .PHONY: install
 install: spew

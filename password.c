@@ -13,12 +13,13 @@ static size_t passl=1;
 static bool debug=0;
 void addDigit(size_t n)
 {
+	size_t i;
 	passl+=n;
 	if(realloc(passn, passl)){}
-	for(size_t i=passl-1; i>0; i--) {
+	for(i=passl-1; i>0; i--) {
 		passn[i]=passn[i-n];
 	}
-	for(size_t i=0; i<n; i++) {
+	for(i=0; i<n; i++) {
 		passn[i]=0;
 	}
 }
@@ -38,14 +39,15 @@ void add(uint_fast32_t n)
 	}
 }
 void printpass()
-{
+{ 
+	size_t i;
 	if(debug) {
-		for(size_t i=0; i<passl; i++) {
+		for(i=0; i<passl; i++) {
 			printf("%2u ", passn[i]);
 		}
 		printf(" = ");
 	}
-	for(size_t i=0; i<passl; i++) {
+	for(i=0; i<passl; i++) {
 		printf("%c", chars[passn[i]]);
 	}
 	puts("");
