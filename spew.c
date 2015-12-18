@@ -95,7 +95,7 @@ void main(int argc, char **argv) {
 				debug=1;
 				break;
 			case 'p':
-				prefix=optarg;
+				setPrefix(optarg);
 				break;
 			default:
 				fprintf(stderr, HELP_MSG);

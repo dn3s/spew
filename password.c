@@ -8,6 +8,7 @@
 
 static uint_fast32_t charsl=0;
 static char *chars="";
+static char *prefix="";
 static char *passn;
 static size_t passl=1;
 static bool debug=0;
@@ -38,7 +39,7 @@ void add(uint_fast32_t n)
 		d--;
 	}
 }
-void printpass(char* prefix)
+void printpass()
 { 
 	size_t i;
 	if(debug) {
@@ -65,5 +66,12 @@ void setCharset(char* c)
 	strncpy(chars, c, charsl+1);
 	if(debug) {
 		fprintf(stderr, "Charset set to %u chars: \"%s\"\n", charsl, chars);
+	}
+}
+void setPrefix(char* p)
+{
+	prefix=p;
+	if(debug) {
+		fprintf(stderr, "Prefix set to \"%s\"\n", charsl, chars);
 	}
 }
