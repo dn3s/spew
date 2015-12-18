@@ -32,7 +32,8 @@ void spew(uint_fast64_t n, uint_fast32_t l, uint_fast32_t slots, uint_fast32_t a
 		}
 	}
 }
-void main(int argc, char **argv) {
+void main(int argc, char **argv)
+{
 	bool numeric=0;
 	uint_fast64_t start=0;
 	uint_fast32_t slots=1;
