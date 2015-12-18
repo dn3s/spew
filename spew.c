@@ -18,12 +18,12 @@ void spew(uint_fast64_t n, uint_fast32_t l, uint_fast32_t slots, uint_fast32_t a
 	}
 	uint_fast32_t skip=slots-assigned;
 	while(1) {
-		if((n-offset) % slots < assigned) {
+		if((n-offset) % slots < assigned) { //there's probably a way to make this cheaper. it's in a pretty speed-critical section.
 			printpass();
 			add(1);
 		}
 		else {
-			if(debug) {
+			if(debug) { //how much are these debug checks costing? this one is only slightly less critical than the ones in password.c
 				printf("%u - skipping %u\n", (unsigned int)n, (unsigned int)skip);
 			}
 			add(skip);

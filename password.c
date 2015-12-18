@@ -62,9 +62,6 @@ void printpass()
 		printf(", pass: ");
 	}
 	printf(prefix);
-	for(i=0; i<passl; i++) {
-		//pass[i]=chars[passn[i]];
-	}
 	puts(pass);
 }
 void initpass(uint_fast32_t l)
