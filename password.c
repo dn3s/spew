@@ -46,10 +46,11 @@ void printpass()
 { 
 	size_t i;
 	if(debug) {
+			printf("passl: %02u, passn[]:", passl);
 		for(i=0; i<passl; i++) {
-			printf("passl: %2u passn: %2u ", passl, passn[i]);
+			printf(" %02u", passn[i]);
 		}
-		printf(" = ");
+		printf(", pass: ");
 	}
 	printf(prefix);
 	for(i=0; i<passl; i++) {
