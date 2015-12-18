@@ -38,7 +38,7 @@ void add(uint_fast32_t n)
 		d--;
 	}
 }
-void printpass()
+void printpass(char* prefix)
 { 
 	size_t i;
 	if(debug) {
@@ -47,6 +47,7 @@ void printpass()
 		}
 		printf(" = ");
 	}
+	printf(prefix);
 	for(i=0; i<passl; i++) {
 		printf("%c", chars[passn[i]]);
 	}
