@@ -50,7 +50,7 @@ void printpass()
 	}
 	printf(prefix);
 	for(i=0; i<passl; i++) {
-		printf("%c", chars[passn[i]]);
+		printf("%c", chars[passn[i]]); //TODO: test whether this is faster or building a string and printing it in one go is faster.
 	}
 	puts("");
 }
