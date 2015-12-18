@@ -84,7 +84,6 @@ void setCharset(char* c)
 }
 void setPrefix(char* p)
 {
-	//puts("setPrefix");
 	prefix=p;
 	if(debug) {
 		fprintf(stderr, "Prefix set to \"%s\"\n", prefix);
