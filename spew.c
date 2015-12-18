@@ -12,15 +12,14 @@
 static char *alphanum="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 void spew(uint_fast64_t n, uint_fast32_t l, uint_fast32_t slots, uint_fast32_t assigned, uint_fast32_t offset, char* prefix)
 {
-	if(slots && (n-offset) % slots >= assigned) { //if start value is not an "assigned line",
-		n=(n/slots+1)*slots-offset;               //bump up to next "assigned line"
-	}
 	add(n);
+	if(slots && (n-offset) % slots >= assigned) { //if start value is not an "assigned line",
+		add((n/slots+1)*slots-offset);               //bump up to next "assigned line"
+	}
 	uint_fast32_t skip=slots-assigned;
 	while(1) {
 		if((n-offset) % slots < assigned) {
 			printpass();
-			n++;
 			add(1);
 		}
 		else {
@@ -28,7 +27,6 @@ void spew(uint_fast64_t n, uint_fast32_t l, uint_fast32_t slots, uint_fast32_t a
 				printf("%u - skipping %u\n", (unsigned int)n, (unsigned int)skip);
 			}
 			add(skip);
-			n+=skip;
 		}
 	}
 }
