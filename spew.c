@@ -19,10 +19,7 @@ void spew(uint_fast64_t n, uint_fast32_t l, uint_fast32_t slots, uint_fast32_t a
 	uint_fast32_t skip=slots-assigned;
 	while(1) {
 		if((n-offset) % slots < assigned) {
-			if(debug) {
-				printf("%u - ", n);
-			}
-			printpass(prefix);
+			printpass();
 			n++;
 			add(1);
 		}

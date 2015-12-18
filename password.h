@@ -1,4 +1,4 @@
-bool debug=0;
+bool debug;
 void addDigit(size_t n);
 void add(uint_fast32_t n);
 void printpass();

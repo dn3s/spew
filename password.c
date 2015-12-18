@@ -5,18 +5,21 @@
 #include <stdbool.h>
 #include <inttypes.h>
 #include <math.h>
+#include <password.h>
 
 static uint_fast32_t charsl=0;
 static char *chars="";
 static char *prefix="";
 static char *passn;
 static size_t passl=1;
-static bool debug=0;
 void addDigit(size_t n)
 {
 	size_t i;
 	passl+=n;
-	if(realloc(passn, passl)){}
+	if(!realloc(passn, passl)){
+		fprintf(stderr, "Realloc failed!\n");
+		exit(1);
+	}
 	for(i=passl-1; i>0; i--) {
 		passn[i]=passn[i-n];
 	}
@@ -24,7 +27,7 @@ void addDigit(size_t n)
 		passn[i]=0;
 	}
 }
-void add(uint_fast32_t n)
+void add(uint_fast32_t n) //Advance the string by n permutations
 {
 	size_t d=passl-1;
 	while(n) {
@@ -44,7 +47,7 @@ void printpass()
 	size_t i;
 	if(debug) {
 		for(i=0; i<passl; i++) {
-			printf("%2u ", passn[i]);
+			printf("passl: %2u passn: %2u ", passl, passn[i]);
 		}
 		printf(" = ");
 	}
