@@ -11,6 +11,7 @@ static uint_fast32_t charsl=0;
 static char *chars="";
 static char *prefix="";
 static char *passn;
+static char *pass="";
 static size_t passl=1;
 void addDigit(size_t n)
 {
@@ -20,6 +21,11 @@ void addDigit(size_t n)
 		fprintf(stderr, "Realloc failed!\n");
 		exit(1);
 	}
+	if(!realloc(pass, passl+1)){ //don't forget the trailing null!
+		fprintf(stderr, "Realloc failed!\n");
+		exit(1);
+	}
+	pass[passl]=0;
 	for(i=passl-1; i>0; i--) {
 		passn[i]=passn[i-n];
 	}
@@ -54,28 +60,30 @@ void printpass()
 	}
 	printf(prefix);
 	for(i=0; i<passl; i++) {
-		printf("%c", chars[passn[i]]); //TODO: test whether this is faster or building a string and printing it in one go is faster.
+		pass[i]=chars[passn[i]];
 	}
-	puts("");
+	puts(pass);
 }
 void initpass(uint_fast32_t l)
 {
 	passn=calloc(l,sizeof(char));
+	pass=calloc(l+1,sizeof(char));
+	pass[l]=0;
 	passl=l;
 }
 void setCharset(char* c)
 {
 	charsl=strlen(c);
-	chars=calloc(charsl+1, sizeof(char));
-	strncpy(chars, c, charsl+1);
+	chars=c;
 	if(debug) {
 		fprintf(stderr, "Charset set to %u chars: \"%s\"\n", charsl, chars);
 	}
 }
 void setPrefix(char* p)
 {
+	//puts("setPrefix");
 	prefix=p;
 	if(debug) {
-		fprintf(stderr, "Prefix set to \"%s\"\n", charsl, chars);
+		fprintf(stderr, "Prefix set to \"%s\"\n", prefix);
 	}
 }
